@@ -1,6 +1,3 @@
-Here's a `README.md` file that provides clear instructions for using the four Docker-related files (frontend and backend Dockerfiles, Docker Compose, and the shell script) to run the application locally.
-
----
 
 # **Full-Stack Application with Docker**
 
