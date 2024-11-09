@@ -1,5 +1,5 @@
 
-# **Full-Stack Application with Docker**
+# ** Containerization of Full-Stack Application with Docker**
 
 This project demonstrates how to run a full-stack application locally using Docker. The application consists of a **React frontend**, **Express backend**, and **MongoDB database**, all containerized using Docker. With **Docker Compose**, you can start and manage all services at once. An included shell script automates the build, push, and deployment processes.
 
