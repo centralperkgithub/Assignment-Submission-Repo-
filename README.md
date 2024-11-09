@@ -146,12 +146,4 @@ docker-compose up --build -d
 
 ---
 
-## **Contributing**
 
-Contributions are welcome! Feel free to submit a pull request if you have suggestions or improvements.
-
----
-
-## **License**
-
-This project is licensed under the MIT License.
