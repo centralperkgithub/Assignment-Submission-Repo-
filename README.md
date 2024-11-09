@@ -35,7 +35,7 @@ Clone the repository and navigate to the project root:
 
 ```bash
 git clone https://github.com/centralperkgithub/Assignment-Submission-Repo-.git
-cd devops-task
+
 ```
 
 ## **Docker Files**
