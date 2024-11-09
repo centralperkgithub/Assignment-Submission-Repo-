@@ -1,4 +1,5 @@
-## Full-Stack Application Containerization with Docker: React, Express, and MongoDB ##
+## Full-Stack Application Containerization with Docker:
+# React, Express, and MongoDB 
 
 This project demonstrates how to containerize a full-stack web application using Docker. The application consists of a React frontend, an Express backend, and a MongoDB database. Docker and Docker Compose are used to manage the setup, making it easy to deploy and run the app in isolated containers.
 
