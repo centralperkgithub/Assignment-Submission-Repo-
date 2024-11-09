@@ -1,121 +1,162 @@
-## Full-Stack Application Containerization with Docker:
-# React, Express, and MongoDB 
+Here's a `README.md` file template for your project repository that provides clear instructions, a description, and an attractive structure with tags and emphasis.
 
-This project demonstrates how to containerize a full-stack web application using Docker. The application consists of a React frontend, an Express backend, and a MongoDB database. Docker and Docker Compose are used to manage the setup, making it easy to deploy and run the app in isolated containers.
+---
 
-# Table of Contents
+# **Full-Stack Application Containerized with Docker**
 
-1.Project Overview
-2.Prerequisites
-3.Getting Started
-4.Docker Setup
-5.Frontend Dockerfile
-6.Backend Dockerfile
-7.Docker Compose
-8.Running the Application
-9.Testing the Application
-10.Additional Information
+This project demonstrates how to containerize a full-stack web application using Docker. The application includes a **React frontend**, **Express backend**, and **MongoDB database**. Using Docker Compose, you can quickly set up and run the app, making it easier to deploy and manage.
 
+## **Table of Contents**
+- [Project Overview](#project-overview)
+- [Prerequisites](#prerequisites)
+- [Setup Instructions](#setup-instructions)
+  - [Clone the Repository](#1-clone-the-repository)
+  - [Environment Variables](#2-environment-variables)
+  - [Create Docker Images](#3-create-docker-images)
+  - [Start Services with Docker Compose](#4-start-services-with-docker-compose)
+- [API Endpoints](#api-endpoints)
+- [Automation Script](#automation-script)
+- [Testing and Access](#testing-and-access)
+- [Troubleshooting](#troubleshooting)
 
-# Project Overview
+---
 
-The goal of this project is to package a full-stack application into containers to simplify deployment and improve manageability. With Docker Compose, we can launch all components—frontend, backend, and database—simultaneously with a single command.
+## **Project Overview**
 
-# Prerequisites
-Before starting, ensure you have:
+This application is built to demonstrate how to use Docker to containerize each component of a full-stack application, creating separate but coordinated containers for the frontend, backend, and database. By using **Docker Compose**, we orchestrate these containers to work together, simplifying the setup process and enabling the app to be deployed as a whole.
 
-Docker installed.
-A Docker Hub account (for image storage if needed).
-A .env file in the root directory containing the MongoDB connection string and other environment variables. Example:
-dotenv
-Copy code
-MONGO_URI=mongodb://mongo:27017/sampleApp
-PORT=5000
-Getting Started
-Clone the repository:
+### **Components**
+- **React Frontend**: The frontend user interface built with React.
+- **Express Backend**: The backend server built with Express to handle API requests.
+- **MongoDB Database**: A MongoDB container to store user data.
 
-bash
-Copy code
-git clone https://github.com/fliprlab/devops-task.git
-cd devops-task
-Create a .env file: In the root directory, create a .env file with the MongoDB URI:
+## **Prerequisites**
 
-plaintext
-Copy code
-MONGO_URI=mongodb://mongo:27017/sampleApp
-PORT=5000
-Docker Setup
-This project contains Dockerfiles for the frontend and backend and a Docker Compose file to manage all services.
+To run this project, you will need:
+- [Docker](https://www.docker.com/get-started) installed on your system.
+- A [Docker Hub](https://hub.docker.com/) account if you plan to push images to the cloud.
 
-Frontend Dockerfile
-The frontend Dockerfile is located in the frontend directory. It:
+---
 
-Uses a Node.js base image to build the React app.
-Copies the app code and installs dependencies.
-Builds the React application for production.
-Uses Nginx to serve the built files.
-Backend Dockerfile
-The backend Dockerfile is located in the backend directory. It:
+## **Setup Instructions**
 
-Uses a Node.js base image to run the Express backend.
-Copies the backend code and installs dependencies.
-Exposes port 5000 for the backend API.
-Specifies the command to start the Express server.
-Docker Compose
-The docker-compose.yml file in the root directory defines services for:
+### 1. **Clone the Repository**
 
-Frontend: Exposed on port 3000.
-Backend: Exposed on port 5000, connects to MongoDB.
-MongoDB: Database service, data persisted in a Docker volume.
-The file sets up network connections and environment variables needed for the services to communicate.
+   ```bash
+   git clone https://github.com/fliprlab/devops-task
+   cd devops-task
+   ```
 
-Running the Application
-Build and Start Containers: Run the following command to build and start all services:
+### 2. **Environment Variables**
 
-bash
-Copy code
-docker-compose up --build -d
-Check Container Status: Ensure all containers are running:
+Create a `.env` file in the root directory and specify the following environment variables. Replace the default values if necessary:
 
-bash
-Copy code
-docker-compose ps
-Access the Application:
+   ```bash
+   PORT=5000
+   MONGO_URI=mongodb://mongo:27017/sampleApp
+   ```
 
-Frontend: http://localhost:3000
-Backend: http://localhost:5000
-Testing the Application
-Verify MongoDB Connection: The backend should connect to MongoDB, logging MongoDB Connected if successful. You can view logs with:
+### 3. **Create Docker Images**
 
-bash
-Copy code
-docker-compose logs backend
-API Endpoints: Use the following endpoints to test the backend API:
+Each component has its own `Dockerfile` to create separate images.
 
-GET /api/users - Fetches all users.
-POST /api/users - Adds a new user (send JSON data with name and email fields).
-Example POST request using curl:
+#### **Frontend Dockerfile**
 
-bash
-Copy code
-curl -X POST http://localhost:5000/api/users -H "Content-Type: application/json" -d '{"name": "John Doe", "email": "john@example.com"}'
-Frontend: Visit http://localhost:3000 to interact with the React app.
+1. Navigate to the **frontend** directory:
+   ```bash
+   cd frontend
+   ```
 
-Additional Information
-Rebuild Containers: If you make changes to the code, rebuild the containers:
+2. Build the frontend image:
+   ```bash
+   docker build -t <your_dockerhub_username>/frontend:latest .
+   ```
 
-bash
-Copy code
-docker-compose up --build -d
-Stop Containers:
+#### **Backend Dockerfile**
 
-bash
-Copy code
-docker-compose down
-Logs: View logs for each container:
+1. Navigate to the **backend** directory:
+   ```bash
+   cd ../backend
+   ```
 
-bash
-Copy code
-docker-compose logs frontend
-docker-compose logs backend
-This setup provides a development and deployment-friendly environment for running a full-stack application in isolated Docker containers.
+2. Build the backend image:
+   ```bash
+   docker build -t <your_dockerhub_username>/backend:latest .
+   ```
+
+### 4. **Start Services with Docker Compose**
+
+Navigate back to the root directory and use Docker Compose to start all services:
+
+```bash
+docker-compose up -d
+```
+
+This command will:
+- Create and run containers for the frontend, backend, and MongoDB services.
+- Set up a network for communication between the containers.
+- Map ports so you can access each service locally.
+
+---
+
+## **API Endpoints**
+
+The backend Express server exposes the following API endpoints for managing user data:
+
+- **GET /api/users** - Retrieves all users from the database.
+- **POST /api/users** - Creates a new user with a JSON payload of `{ name, email }`.
+
+---
+
+## **Automation Script**
+
+An automation shell script is included to:
+1. Build and tag Docker images for the frontend and backend.
+2. Push these images to Docker Hub.
+3. Update the Docker Compose file with the latest image versions.
+4. Restart the application using the updated images.
+
+Run the script with:
+```bash
+./deploy.sh
+```
+
+**Note**: Ensure the script is executable by running `chmod +x deploy.sh` if needed.
+
+---
+
+## **Testing and Access**
+
+After starting the application, you can access each service through the following URLs:
+
+- **Frontend**: [http://localhost:3000](http://localhost:3000)
+- **Backend**: [http://localhost:5000](http://localhost:5000)
+- **API Endpoint**: [http://localhost:5000/api/users](http://localhost:5000/api/users)
+
+---
+
+## **Troubleshooting**
+
+### **Common Issues**
+
+- **Cannot GET /**: If you see this message, it means the backend root route (`/`) is not configured. Add a root route if you need a response at `/`.
+- **Database Connection Failure**: Ensure MongoDB is running and the `MONGO_URI` is correctly set.
+- **Permission Issues**: Use `chmod +x deploy.sh` to make the script executable if necessary.
+
+For additional issues, consult the Docker and Express documentation.
+
+---
+
+## **Contributing**
+
+Feel free to open a pull request or submit an issue if you have suggestions or improvements.
+
+---
+
+## **License**
+
+This project is open-source and available under the MIT License.
+
+---
+
+This `README.md` covers the setup, usage, and troubleshooting steps, making it easy for anyone to get started with the project. Let me know if you'd like further customization!
