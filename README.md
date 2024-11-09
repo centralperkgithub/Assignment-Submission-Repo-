@@ -34,7 +34,7 @@ To run this application on your local machine, you’ll need:
 Clone the repository and navigate to the project root:
 
 ```bash
-git clone https://github.com/fliprlab/devops-task
+git clone https://github.com/centralperkgithub/Assignment-Submission-Repo-.git
 cd devops-task
 ```
 
