@@ -1,6 +1,3 @@
-Here's a `README.md` file template for your project repository that provides clear instructions, a description, and an attractive structure with tags and emphasis.
-
----
 
 # **Full-Stack Application Containerized with Docker**
 
